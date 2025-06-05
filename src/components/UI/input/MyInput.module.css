@@ -1,0 +1,16 @@
+.myInput {
+    padding: 5px 15px;
+    border: 2px solid teal;
+    border-radius: 5px;
+    outline: transparent;
+    color: teal;
+    box-shadow: 1px 1px 3px teal;
+}
+
+.myInput::placeholder {
+    color: rgba(0, 65, 65, 0.589)
+}
+
+.myInput:focus {
+    border: 2px solid rgb(0, 223, 223);
+}
