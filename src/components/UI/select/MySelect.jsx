@@ -10,7 +10,9 @@ export default function MySelect({ options, defaultValue, value, onChange }) {
     >
       <option disabled>{defaultValue}</option>
       {options.map((option) => (
-        <option value={option.value}>{option.name}</option>
+        <option value={option.value} key={option.value}>
+          {option.name}
+        </option>
       ))}
     </select>
   );

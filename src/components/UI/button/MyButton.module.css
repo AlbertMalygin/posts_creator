@@ -1,30 +1,32 @@
 .myBtn {
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    padding: 5px 15px;
-    text-transform: uppercase;
-    border: 2px solid teal;
-    color: teal;
-    border-radius: 5px;
-    outline-color: darkblue;
-    cursor: pointer;
-    box-shadow: 1px 1px 3px teal;
-    background: linear-gradient(
-        rgba(0, 128, 128, 0.3), 
-        rgba(0, 128, 128, 0.1),
-        rgba(0, 128, 128, 0.3)
-    );
-    transition: all .2s;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  border: 2px solid teal;
+  color: teal;
+  border-radius: 5px;
+  outline-color: darkblue;
+  cursor: pointer;
+  background: linear-gradient(
+    rgba(0, 128, 128, 0.3),
+    rgba(0, 128, 128, 0.15),
+    rgba(0, 128, 128, 0.05),
+    rgba(0, 128, 128, 0.15),
+    rgba(0, 128, 128, 0.3)
+  );
+  transition: all 0.2s;
 }
 
 .myBtn:hover {
-    border: 2px solid darkslategray;
-    color: darkslategray;
-    box-shadow: 1px 1px 6px 1px teal;
-    background: linear-gradient(
-        rgba(0, 128, 128, 0.4), 
-        rgba(0, 128, 128, 0.1),
-        rgba(0, 128, 128, 0.4)
-    );
+  border: 2px solid darkslategray;
+  color: darkslategray;
+  background: linear-gradient(
+    rgba(0, 128, 128, 0.5),
+    rgba(0, 128, 128, 0.15),
+    rgba(0, 128, 128, 0.05),
+    rgba(0, 128, 128, 0.15),
+    rgba(0, 128, 128, 0.5)
+  );
 }

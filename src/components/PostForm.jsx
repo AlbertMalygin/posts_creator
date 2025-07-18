@@ -9,6 +9,7 @@ export default function PostForm({ formTitle, addPost }) {
 
     const title = e.target.form[0].value;
     const body = e.target.form[1].value;
+    const date = new Date().toLocaleString("ru");
 
     if (!title || !body) return;
 
@@ -16,6 +17,7 @@ export default function PostForm({ formTitle, addPost }) {
       id: Date.now(),
       title: title,
       body: body,
+      date: date,
     };
 
     addPost(newPost);

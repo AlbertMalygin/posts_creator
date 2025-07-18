@@ -9,6 +9,7 @@ export default function PostItem({ removePost, number, post }) {
           {number}. {post.title}
         </h3>
         <div className="post__body">{post.body}</div>
+        <div className="post__date">{post.date.toString()}</div>
       </div>
       <MyButton
         onClick={() => {
