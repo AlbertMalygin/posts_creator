@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PostForm from "../components/PostForm";
 import PostList from "../components/PostList";
 import PostFilter from "../components/PostFilter";
@@ -10,8 +10,11 @@ import Loader from "../components/UI/Loader/Loader";
 import { useFetch } from "../hooks/useFetch";
 import { getPagesArray, getPagesCount } from "../utils/pages";
 import PagesNavigation from "../components/UI/PageNavigation/PagesNavigation";
+import { AuthContext } from "../context";
 
 function Posts() {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [createPostModal, setCreatePostModal] = useState(false);
@@ -58,14 +61,18 @@ function Posts() {
   }
 
   return (
-    <div className="App">
-      <div className="header__btns">
-        <MyButton onClick={() => setCreatePostModal(true)}>
-          Создать пост
-        </MyButton>
-        <MyButton>Авторизоваться</MyButton>
-      </div>
-      <hr className="hr" />
+    <div className="App pageContent">
+      {isAuth ? (
+        <>
+          <div className="header__btns">
+            <MyButton onClick={() => setCreatePostModal(true)}>
+              Создать пост
+            </MyButton>
+          </div>
+          <hr className="hr" />
+        </>
+      ) : null}
+
       <PostFilter filter={filter} setFilter={setFilter} />
       {!isPostsLoading ? (
         <>

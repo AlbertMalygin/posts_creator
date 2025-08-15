@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MyButton from "./UI/button/MyButton";
 import PostEditor from "./PostEditor";
 import MyModal from "./UI/MyModal/MyModal";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../context";
 
 export default function PostItem({ editPost, removePost, post }) {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
   const [editorModal, setEditorModal] = useState(false);
   const navigate = useNavigate();
   function openPost() {
@@ -20,17 +23,21 @@ export default function PostItem({ editPost, removePost, post }) {
             (post.date || new Date().toLocaleString("ru"))}
         </div>
       </div>
-      <div className="post__btns">
-        <MyButton onClick={() => setEditorModal(true)}>Редактировать</MyButton>
-        <MyButton
-          onClick={() => {
-            removePost(post);
-          }}
-        >
-          Удалить
-        </MyButton>
-        <MyButton onClick={openPost}>Подробнее...</MyButton>
-      </div>
+      {isAuth ? (
+        <div className="post__btns">
+          <MyButton onClick={() => setEditorModal(true)}>
+            Редактировать
+          </MyButton>
+          <MyButton
+            onClick={() => {
+              removePost(post);
+            }}
+          >
+            Удалить
+          </MyButton>
+          <MyButton onClick={openPost}>Подробнее...</MyButton>
+        </div>
+      ) : null}
 
       {editorModal ? (
         <MyModal setVisible={setEditorModal}>

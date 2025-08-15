@@ -31,7 +31,7 @@ export default function PostPage() {
   }, []);
 
   return (
-    <div className="postPage">
+    <div className="postPage pageContent">
       {isLoading || isCommentsLoading ? (
         <Loader />
       ) : (

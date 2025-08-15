@@ -12,13 +12,37 @@
   align-items: center;
 }
 
-.App,
-.postPage {
+.devInfo {
+  margin: 30px 0;
+  color: lightslategray;
+}
+
+.pageContent {
   display: flex;
   flex-direction: column;
   width: 800px;
   padding: 20px 10px 0;
 }
+
+.Login {
+  justify-content: center;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  row-gap: 10px;
+  align-items: center;
+}
+
+/* .App,
+.postPage {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  padding: 20px 10px 0;
+} */
 
 .postPage {
   row-gap: 15px;
@@ -133,28 +157,6 @@ a:hover,
 a.active:hover {
   color: rgb(190, 223, 223);
 }
-
-/* .navbar__links {
-  width: 800px;
-  padding: 0 10px;
-  background: transparent;
-  display: flex;
-  align-items: end;
-  column-gap: 10px;
-}
-
-.navbar__links a {
-  text-decoration: none;
-  text-transform: uppercase;
-  background: transparent;
-  padding: 5px;
-  color: white;
-  transition: all 0.2s;
-}
-
-.navbar__links a.active {
-  color: rgb(165, 201, 201);
-} */
 
 @media screen and (max-width: 480px) {
   .post {

@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router";
-import Posts from "../pages/Posts";
-import About from "../pages/About";
-import PostPage from "../pages/PostPage";
+import { privateRoutes, publicRoutes } from "../routes";
+import { AuthContext } from "../context";
 
 export default function AppRouter() {
-  function NotFound() {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+  function NotCorrectURL() {
     const navigate = useNavigate();
     useEffect(() => {
       navigate("/posts", { replace: true });
@@ -15,10 +16,14 @@ export default function AppRouter() {
   }
   return (
     <Routes>
-      <Route path="/posts" element={<Posts />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/posts/:id" element={<PostPage />} />
-      <Route path="*" element={<NotFound />} />
+      {isAuth
+        ? privateRoutes.map((r) => (
+            <Route path={r.path} element={<r.component />} exact={r.exact} />
+          ))
+        : publicRoutes.map((r) => (
+            <Route path={r.path} element={<r.component />} exact={r.exact} />
+          ))}
+      <Route path="*" element={<NotCorrectURL />} />
     </Routes>
   );
 }

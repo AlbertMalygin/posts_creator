@@ -6,11 +6,18 @@
   background: teal;
 }
 
-.navbar__links {
-  width: 800px;
-  padding: 0 10px;
-  background: transparent;
+.navbar__linksWrapper {
   display: flex;
+  background: transparent;
+  width: 800px;
+  justify-content: space-between;
+}
+
+.navbar__links {
+  display: flex;
+  background: transparent;
+  padding: 0 10px;
+  justify-content: space-between;
   align-items: end;
   column-gap: 10px;
 }
