@@ -1,10 +1,9 @@
-.mySelect{
-    display: flex;
-    align-self: flex-start;
-    border: 2px solid teal;
-    box-shadow: 1px 1px 3px teal;
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: teal;
-    outline: transparent;
+.mySelect {
+  display: flex;
+  border: 2px solid teal;
+  box-shadow: 1px 1px 3px teal;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: teal;
+  outline: transparent;
 }

@@ -1,0 +1,16 @@
+.navbar {
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background: teal;
+}
+
+.navbar__links {
+  width: 800px;
+  padding: 0 10px;
+  background: transparent;
+  display: flex;
+  align-items: end;
+  column-gap: 10px;
+}

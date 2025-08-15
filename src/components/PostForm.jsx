@@ -5,7 +5,6 @@ import MyButton from "./UI/button/MyButton";
 export default function PostForm({ formTitle, addPost }) {
   function createPost(e) {
     e.preventDefault();
-    console.log(e);
 
     const title = e.target.form[0].value;
     const body = e.target.form[1].value;
@@ -18,6 +17,7 @@ export default function PostForm({ formTitle, addPost }) {
       title: title,
       body: body,
       date: date,
+      edited: false,
     };
 
     addPost(newPost);
@@ -30,7 +30,9 @@ export default function PostForm({ formTitle, addPost }) {
       <h2>{formTitle}</h2>
       <MyInput placeholder="Заголовок..." />
       <MyInput placeholder="Содержание..." />
-      <MyButton onClick={createPost}>Создать</MyButton>
+      <div className="form__btns">
+        <MyButton onClick={createPost}>Создать</MyButton>
+      </div>
     </form>
   );
 }
