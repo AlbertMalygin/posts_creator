@@ -2,23 +2,26 @@
   display: flex;
   width: fit-content;
   height: fit-content;
-  padding: 10px 15px;
+  padding: 7px 12px;
   justify-content: center;
   text-transform: uppercase;
-  color: white;
+  color: teal;
   border-radius: 5px;
-  border: none;
+  border: 2px solid teal;
   cursor: pointer;
-  background: teal;
-  box-shadow: 1px 1px 3px teal;
+  background: transparent;
+  box-shadow: inset 0px 0px 5px teal;
   transition: all 0.2s;
 }
 
 .myBtn:hover {
-  background: darkslategray;
+  color: darkslategray;
+  border: 2px solid darkslategray;
+  box-shadow: inset 0px 0px 5px darkslategray;
 }
 
 .myBtn.current {
-  color: white;
-  background: darkslategray;
+  color: black;
+  border: 2px solid black;
+  box-shadow: inset 0px 0px 5px black;
 }
