@@ -16,6 +16,10 @@ export default function LoginForm() {
       return;
     }
     setIsAuth(true);
+    localStorage.setItem(
+      "post_creator_auth",
+      `{"login":"${userName}","password":"${userPassword}"}`
+    );
   }
   return (
     <form className="login__form">

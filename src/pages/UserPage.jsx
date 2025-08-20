@@ -9,6 +9,7 @@ export default function UserPage() {
   function logout(event) {
     event.preventDefault();
     setIsAuth(false);
+    localStorage.removeItem("post_creator_auth");
   }
   return (
     <div>

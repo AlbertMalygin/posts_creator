@@ -8,17 +8,18 @@ import { usePosts } from "../hooks/usePosts";
 import PostService from "../API/PostService";
 import Loader from "../components/UI/Loader/Loader";
 import { useFetch } from "../hooks/useFetch";
-import { getPagesArray, getPagesCount } from "../utils/pages";
-import PagesNavigation from "../components/UI/PageNavigation/PagesNavigation";
 import { AuthContext } from "../context";
+import { useInView } from "react-intersection-observer";
 
 function Posts() {
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
+  const { ref, inView, entry } = useInView();
+
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [createPostModal, setCreatePostModal] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
+  const [postsValue, setPostsValue] = useState(0);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
@@ -27,17 +28,21 @@ function Posts() {
     const response = await PostService.getAll(limit, page);
     setPosts(response.data);
     const totalCount = response.headers["x-total-count"];
-    setTotalPages(getPagesCount(totalCount, limit));
+    setPostsValue(totalCount);
   });
-
-  let pagesArray = getPagesArray(totalPages);
 
   useEffect(() => {
     fetchPosts();
-  }, [page]);
+  }, [page, limit]);
 
-  function getFormettedDate(locale) {
-    const formattedDate = new Date().toLocaleString(locale);
+  useEffect(() => {
+    if (inView && limit <= postsValue) {
+      setLimit(limit + 10);
+    }
+  }, [inView]);
+
+  function getFormettedDate(localeTimeFormat) {
+    const formattedDate = new Date().toLocaleString(localeTimeFormat);
     return formattedDate;
   }
 
@@ -74,22 +79,16 @@ function Posts() {
       ) : null}
 
       <PostFilter filter={filter} setFilter={setFilter} />
-      {!isPostsLoading ? (
-        <>
-          <PostList
-            removePost={removePost}
-            editPost={editPost}
-            posts={sortedAndSearchedPosts}
-            listTitle="Список постов"
-          />
-          <PagesNavigation
-            choosePage={setPage}
-            currentPage={page}
-            totalPages={pagesArray}
-          />
-        </>
-      ) : (
+      <PostList
+        removePost={removePost}
+        editPost={editPost}
+        posts={sortedAndSearchedPosts}
+        listTitle="Список постов"
+      />
+      {isPostsLoading ? (
         <Loader />
+      ) : (
+        <div ref={ref} className="pagination"></div>
       )}
 
       {postError && console.log(postError)}
